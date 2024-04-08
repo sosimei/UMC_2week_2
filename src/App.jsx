@@ -1,28 +1,28 @@
+
 import React, { useState } from 'react';
+import Modal from './components/Modal.jsx';
 
-function App() {
-  const [count, setCount] = useState(0); 
+const App = () => {
+    const [showModal, setShowModal] = useState(false);
+    
+    const logOpenModal = () => {
+        console.log('모달 열림');
+        setShowModal(true);
+    };
 
-  const increase = () => {
-    console.log("increase 가 클릭됨")
-    setCount(count + 1);
-  };
-
-  const decrease = () => {
-    console.log("decrease 가 클릭됨")
-    setCount(count - 1);
-  };
-
-  return (
-    <div className="App">
-      <div className="counter-container">
-        <h1>Counter</h1>
-        <div className="counter-value">{count}</div>
-        <button className="counter-btn" onClick={decrease}>-1</button>
-        <button className="counter-btn" onClick={increase}>+1</button>
-      </div>
-    </div>
-  );
-}
+    const logCloseModal = () => {
+        console.log('모달 닫힘');
+        setShowModal(false);
+    };
+    
+    return (
+        <div>
+            <h2>안녕하세요!</h2>
+            <p>내용내용내용</p>
+            <button onClick={() => logOpenModal()}>모달 열기</button>
+            {showModal && <Modal content="모달 내용은 어쩌고 저쩌고.." onClose={logCloseModal} />}
+        </div>
+    );
+};
 
 export default App;
